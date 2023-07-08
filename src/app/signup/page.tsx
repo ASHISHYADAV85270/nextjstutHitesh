@@ -4,7 +4,7 @@ import Link from "next/link";
 // import { useRouter } from "next/navigation";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-
+import toast, { Toaster } from 'react-hot-toast';
 export default function SignupPage() {
     const router=useRouter();
 
@@ -27,11 +27,11 @@ export default function SignupPage() {
         try {
             setLoading(true);
             const userRes=  await axios.post('api/users/signup',user);
-            console.log("user added it is a front end console")
-            console.log(userRes);
+            toast.success("user added")
             router.push("/login");
         } catch (error:any) {
             console.log("user SignUp  failed",error.message)
+            toast.error("Error ");
         }finally{
             setLoading(false);
         }

@@ -4,7 +4,7 @@ import Link from "next/link";
 // import { useRouter } from "next/navigation";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { toast } from "react-hot-toast";
+import toast, { Toaster } from 'react-hot-toast';
 
 
 
@@ -49,5 +49,7 @@ export default function LoginUpPage() {
             <button  className="p-2 bordertext-black border-gray-400 rounded-lg mb-4 focus:outline-none  bg-slate-950 hover:text-red-400 hover:border-none" onClick={onLogin} disabled={buttonDisabled}>
                 {loading?"Waiting":"LoginUp"}</button>
             <Link href="/signup" className="hover:text-red-400"> Visit SignUp</Link>
+        <Toaster />
+
     </div>)
 }
