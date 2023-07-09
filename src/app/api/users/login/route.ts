@@ -8,7 +8,6 @@ connect();
 
 export async function POST(request: NextRequest) {
     try {
-        console.log("check1")
         const reqBody = await request.json();
         const { email, password } = reqBody;
 
@@ -39,7 +38,9 @@ export async function POST(request: NextRequest) {
         })
         response.cookies.set("token", token, {
             httpOnly: true,
-        })
+        });
+
+
         return response;
     } catch (error: any) {
         console.log("Some Error");

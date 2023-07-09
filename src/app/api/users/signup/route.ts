@@ -2,6 +2,9 @@ import { connect } from "@/dbConfig/dbConfig";
 import userModel from "@/models/userModel.js";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
+import { sendEmail } from "@/helpers/mailer";
+// import { sendEmail } from "@/helpers/mailer";
+
 
 connect();
 
@@ -22,7 +25,14 @@ export async function POST(request: NextRequest) {
         //if  user is not there
         const hashpassword = await bcryptjs.hash(password, 10);
         user = await userModel.create({ username, email, password: hashpassword });
-        console.log(`user data is signup data is ${user}`)
+        console.log(`i am user from backend signup page ${user}`);
+
+
+        //send verification email
+        console.log(`i am before sending email`);
+        await sendEmail({ email, emailType: "VERIFY", userId: user._id });
+        console.log(`i am after sending email`);
+
         return NextResponse.json({ success: true, message: "User created ", user: user }, { status: 200 });
 
     } catch (error: any) {
