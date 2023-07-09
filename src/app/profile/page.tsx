@@ -11,7 +11,10 @@ import toast, { Toaster } from "react-hot-toast";
 
 export default function ProfilePage() {
     const router = useRouter();
-    const [data, setData] = useState("nothing");
+    const [userdata, setUserdata] = useState({ username: "", email: "" });
+
+
+
     const logout = async () => {
         try {
             const respo = await axios.get('/api/users/logout');
@@ -23,14 +26,14 @@ export default function ProfilePage() {
         }
     }
 
-    const datadiv = <div> {data}</div>;
 
 
     const getuserData = async () => {
         try {
             const respo: any = await axios.get('/api/users/me');
-            setData(respo.data);
-            toast.success(`hi ${respo.data.user.username}`);
+            setUserdata({ username: respo.data.user.username, email: respo.data.user.email });
+            console.log("data", userdata);
+            toast.success(`hi ${respo.data}`);
         } catch (error: any) {
             toast.error(error.message);
         }
@@ -52,5 +55,8 @@ export default function ProfilePage() {
                 onClick={getuserData}
                 className="bg-green-800 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >GetUser Details</button>
+            {userdata.username}
+            <br />
+            {userdata.email}
         </div>)
 }
