@@ -48,6 +48,8 @@ export default function LoginUpPage() {
         <button className="p-2 bordertext-black border-gray-400 rounded-lg mb-4 focus:outline-none  bg-slate-950 hover:text-red-400 hover:border-none" onClick={onLogin} disabled={buttonDisabled}>
             {loading ? "Waiting" : "LoginUp"}</button>
         <Link href="/signup" className="hover:text-red-400"> Visit SignUp</Link>
+        <Link href="/forgetpassword" className="hover:text-red-400">Forget Password</Link>
+
         <Toaster />
 
     </div>)

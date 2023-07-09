@@ -35,7 +35,7 @@ export default function SignupPage() {
         }
     }
     return (<div className="flex flex-col items-center justify-center min-h-screen py-2">
-        <h1>{loading ? "Processing" : "SignUp"}</h1>
+        <h1>{loading ? "Processing" : "SignUp"}</h1>    
         <hr />
         <label htmlFor="username" >Username</label>
         <input className="p-2 border text-black border-gray-400 rounded-lg mb-4 focus:outline-none focus:border-gray-900" type="text" id="username" value={user.username} onChange={(e) => setUser({ ...user, username: e.target.value })} placeholder="username" />
